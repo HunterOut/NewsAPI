@@ -1,3 +1,14 @@
 from django.contrib import admin
+from posts.models import Post, Comment
 
-# Register your models here.
+
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'link', 'author', 'created')
+
+admin.site.register(Post, PostAdmin)
+
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('author', 'created', 'post')
+
+admin.site.register(Comment, CommentAdmin)
