@@ -1,6 +1,6 @@
-https://newsapidevtoday.herokuapp.com/
+https://newsapidevtoday.herokuapp.com/ = Simple newsboard API
 
-https://newsapidevtoday.herokuapp.com/ = all news
+https://newsapidevtoday.herokuapp.com/posts = all news
 
 https://newsapidevtoday.herokuapp.com/posts/1/ = detail news
 
