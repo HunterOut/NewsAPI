@@ -2,29 +2,20 @@ from rest_framework import serializers
 from .models import Comment, Post
 
 
-class PostSerializer(serializers.ModelSerializer):
-    '''Новости'''
-    comments = serializers.SlugRelatedField(slug_field='author', read_only=True, many=True)
-    user = serializers.SlugRelatedField(slug_field='username', read_only=True)
-
-    class Meta:
-        model = Post
-        fields = '__all__'
-
-################## Not used ######################
-class DetailSerializer(serializers.ModelSerializer):
-    '''Подробности'''
-    comments = serializers.SlugRelatedField(slug_field='author', read_only=True, many=True)
-    user = serializers.SlugRelatedField(slug_field='username', read_only=True)
-
-    class Meta:
-        model = Post
-        fields = '__all__'
-
-
-class CommentSerializer(serializers.ModelSerializer):
+class CommentSerializer(serializers.HyperlinkedModelSerializer):
     '''Добавление комментария'''
-
+    #author = serializers.StringRelatedField(many=False)
+    
     class Meta:
         model = Comment
-        fields = '__all__'
+        fields = ["id", "post", "author", "content", "created"]
+
+
+class PostSerializer(serializers.HyperlinkedModelSerializer):
+    '''Новости'''
+    #comments = CommentSerializer(many=True)
+    #author = serializers.SlugRelatedField(slug_field='username', read_only=True)
+
+    class Meta:
+        model = Post
+        fields = ["id", "title", "link", "created", "amount_of_upvotes", "author"]
